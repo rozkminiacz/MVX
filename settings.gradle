@@ -1,0 +1,3 @@
+include ':app', ':mvx', ':MvxMap', ':data'
+rootProject.name='mvxexample'
+enableFeaturePreview("GRADLE_METADATA")
