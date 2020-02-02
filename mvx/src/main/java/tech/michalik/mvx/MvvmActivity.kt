@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
 /**
@@ -15,25 +15,26 @@ import javax.inject.Inject
 abstract class MvvmActivity<VM : ViewModel, VB : ViewDataBinding>(
     private val layoutId: Int,
     private val vmClass: Class<VM>,
-    private val viewModelBr: Int) : AppCompatActivity() {
+    private val viewModelBr: Int
+) : AppCompatActivity() {
 
-  @Inject
-  lateinit var viewModelProvider: GenericViewModelProviderFactory<VM>
+    @Inject
+    lateinit var viewModelProvider: GenericViewModelProviderFactory<VM>
 
-  val viewModel by lazy {
-    ViewModelProviders.of(this@MvvmActivity, viewModelProvider).get(vmClass)
-  }
+    val viewModel by lazy {
+        ViewModelProvider(this@MvvmActivity, viewModelProvider).get(vmClass)
+    }
 
-  val binding by lazy {
-    DataBindingUtil.setContentView<VB>(this, layoutId)
-  }
+    val binding by lazy {
+        DataBindingUtil.setContentView<VB>(this, layoutId)
+    }
 
-  abstract fun inject()
+    abstract fun inject()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    inject()
-    binding.setVariable(viewModelBr, viewModel)
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        inject()
+        binding.setVariable(viewModelBr, viewModel)
+    }
 }
 

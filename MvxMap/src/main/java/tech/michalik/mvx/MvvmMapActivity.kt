@@ -3,6 +3,7 @@ package tech.michalik.mvx
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.MapsInitializer
 
 abstract class MvvmMapActivity<VM : ViewModel, VB : ViewDataBinding>(
@@ -12,6 +13,7 @@ abstract class MvvmMapActivity<VM : ViewModel, VB : ViewDataBinding>(
 
   override fun onCreate(savedInstanceState: Bundle?) {
     exectueOnCreate(savedInstanceState)
+
     super.onCreate(savedInstanceState)
   }
 

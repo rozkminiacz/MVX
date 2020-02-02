@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
 abstract class MvvmMapViewFragment<VM : ViewModel, VD : ViewDataBinding>(
@@ -20,7 +20,7 @@ abstract class MvvmMapViewFragment<VM : ViewModel, VD : ViewDataBinding>(
   lateinit var viewModelProvider: GenericViewModelProviderFactory<VM>
 
   val viewModel: VM by lazy {
-    ViewModelProviders.of(this@MvvmMapViewFragment, viewModelProvider).get(vmClass)
+    ViewModelProvider(this@MvvmMapViewFragment, viewModelProvider).get(vmClass)
   }
 
   var binding: VD? = null
