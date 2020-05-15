@@ -55,4 +55,9 @@ abstract class MvvmFragment<VM : ViewModel, VD : ViewDataBinding>(
         return viewModel
     }
 
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
+
 }
