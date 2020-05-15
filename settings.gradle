@@ -1,3 +1,3 @@
-include ':app', ':mvx', ':MvxMap', ':data'
+include ':app', ':mvx', ':MvxMap', ':data', ":mvx-extensions"
 rootProject.name='mvxexample'
 enableFeaturePreview("GRADLE_METADATA")
