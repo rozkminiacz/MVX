@@ -9,7 +9,7 @@
             type="tech.michalik.mvxexample.ui.main.MainViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -17,9 +17,14 @@
         <TextView
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             bind:time="@{viewModel.currentTime}" />
 
-    </FrameLayout>
+        <tech.michalik.mvxexample.ui.main.ItemsListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            bind:items="@{viewModel.items}"/>
+
+    </LinearLayout>
 </layout>
