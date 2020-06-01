@@ -11,7 +11,7 @@ class MvxRecyclerAdapter<Displayable, Binding : ViewDataBinding>(
     private val clickCallback: (Displayable) -> Unit = {},
     private val longClick: (Displayable) -> Unit = {},
     private val viewItemBr: Int,
-    private val provideBinding: (ViewGroup) -> Binding
+    private val provideBinding: (ViewGroup, ViewType) -> Binding
 ) :
     RecyclerView.Adapter<BindableViewHolder<Displayable>>() {
 
@@ -26,7 +26,7 @@ class MvxRecyclerAdapter<Displayable, Binding : ViewDataBinding>(
         parent: ViewGroup,
         viewType: Int
     ): BindableViewHolder<Displayable> {
-        return object : BindableViewHolder<Displayable>(provideBinding(parent)) {
+        return object : BindableViewHolder<Displayable>(provideBinding(parent, viewType)) {
             override fun bind(viewModel: Displayable) {
                 binding.setVariable(viewItemBr, viewModel)
                 super.bind(viewModel)
@@ -49,3 +49,5 @@ class MvxRecyclerAdapter<Displayable, Binding : ViewDataBinding>(
         }
     }
 }
+
+typealias ViewType = Int
