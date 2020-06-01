@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MvxRecyclerAdapter<Displayable, Binding : ViewDataBinding>(
     private val clickCallback: (Displayable) -> Unit = {},
     private val longClick: (Displayable) -> Unit = {},
+    private val itemViewType: (Displayable) -> ViewType = { 0 },
     private val viewItemBr: Int,
     private val provideBinding: (ViewGroup, ViewType) -> Binding
 ) :
@@ -32,6 +33,10 @@ class MvxRecyclerAdapter<Displayable, Binding : ViewDataBinding>(
                 super.bind(viewModel)
             }
         }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return itemViewType(items[position])
     }
 
     override fun getItemCount(): Int {
